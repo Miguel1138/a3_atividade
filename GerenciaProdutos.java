@@ -31,6 +31,8 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jMenu1 = new javax.swing.JMenu();
         jspTabela = new javax.swing.JScrollPane();
         tableProdutos = new javax.swing.JTable();
         labelTextoValor = new javax.swing.JLabel();
@@ -49,7 +51,10 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         jmAjuda = new javax.swing.JMenu();
         jmiSobre = new javax.swing.JMenuItem();
 
+        jMenu1.setText("jMenu1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(545, 340));
 
         tableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,6 +106,7 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         jButton2.setText("Alterar Produto");
 
         jButton3.setText("Excluir Produto");
+        jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jmArquivo.setText("Arquivo");
 
@@ -163,38 +169,37 @@ public class GerenciaProdutos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jspTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelTextoValor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelValorTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonEsgotado))
+                    .addComponent(jspTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jButton3)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jspTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jspTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonEsgotado)
                     .addComponent(labelValorTotal)
                     .addComponent(labelTextoValor))
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -270,6 +275,8 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JMenu jmAjuda;
     private javax.swing.JMenu jmArquivo;
     private javax.swing.JMenu jmProduto;
