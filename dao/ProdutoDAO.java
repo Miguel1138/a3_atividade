@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
 
 public class ProdutoDAO {
 
@@ -90,7 +89,7 @@ public class ProdutoDAO {
                 String descricao = res.getString("descricao_produto");
                 int estoque = res.getInt("quantidade_estoque");
                 float preco = res.getFloat("preco");
-                Date dataCadastro = res.getDate("data_cadastro");
+                String dataCadastro = res.getString("data_cadastro");
                 String fornecedor = res.getString("fornecedor");
                 
                 Produto objeto = new Produto(id, nome, descricao, estoque, preco, dataCadastro, fornecedor);
@@ -119,8 +118,7 @@ public class ProdutoDAO {
             stmt.setString(2, objeto.getDescricao_produto());
             stmt.setInt(3, objeto.getQuantidade_estoque());
             stmt.setFloat(4, objeto.getPreco());
-            // TODO: Pesquisar sobre casting de date util e sql.
-            stmt.setDate(5, objeto.getData_cadastro());
+            stmt.setString(5, objeto.getData_cadastro());
             stmt.setString(6, objeto.getFornecedor());            
             
             stmt.execute();
@@ -161,7 +159,7 @@ public class ProdutoDAO {
             stmt.setString(2, objeto.getDescricao_produto());
             stmt.setInt(3, objeto.getQuantidade_estoque());
             stmt.setFloat(4, objeto.getPreco());
-            stmt.setDate(5, objeto.getData_cadastro());
+            stmt.setString(5, objeto.getData_cadastro());
             stmt.setString(6, objeto.getFornecedor());
             
             stmt.setInt(7, objeto.getId_produto());
@@ -193,7 +191,7 @@ public class ProdutoDAO {
                 String descricao = res.getString("descricao_produto");
                 int estoque = res.getInt("quantidade_estoque");
                 float preco = res.getFloat("preco");
-                Date dataCadastro = res.getDate("data_cadastro");
+                String dataCadastro = res.getString("data_cadastro");
                 String fornecedor = res.getString("fornecedor");
                 
                 Produto objeto = new Produto(id, nome, descricao, estoque, preco, dataCadastro, fornecedor);
@@ -220,7 +218,7 @@ public class ProdutoDAO {
             objeto.setDescricao_produto(res.getString("descricao_produto"));
             objeto.setQuantidade_estoque(res.getInt("quantidade_estoque"));
             objeto.setPreco(res.getFloat("preco"));
-            objeto.setData_cadastro(res.getDate("data_cadastro"));
+            objeto.setData_cadastro(res.getString("data_cadastro"));
             objeto.setFornecedor(res.getString("fornecedor"));
             
             stmt.close();            
