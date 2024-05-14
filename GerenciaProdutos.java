@@ -37,10 +37,10 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         tableProdutos = new javax.swing.JTable();
         labelTextoValor = new javax.swing.JLabel();
         labelValorTotal = new javax.swing.JLabel();
-        buttonEsgotado = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbEstoqueBaixo = new javax.swing.JButton();
+        jbNovo = new javax.swing.JButton();
+        jbAlterar = new javax.swing.JButton();
+        jbExcluir = new javax.swing.JButton();
         jmbBarra = new javax.swing.JMenuBar();
         jmArquivo = new javax.swing.JMenu();
         jmiSair = new javax.swing.JMenuItem();
@@ -89,24 +89,34 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         labelValorTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelValorTotal.setText("R$ 0,00");
 
-        buttonEsgotado.setText("Mostrar Em Falta");
-        buttonEsgotado.addActionListener(new java.awt.event.ActionListener() {
+        jbEstoqueBaixo.setText("Mostrar Em Falta");
+        jbEstoqueBaixo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonEsgotadoActionPerformed(evt);
+                jbEstoqueBaixoActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Novo Produto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbNovo.setText("Novo Produto");
+        jbNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbNovoActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Alterar Produto");
+        jbAlterar.setText("Alterar Produto");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Excluir Produto");
-        jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jbExcluir.setText("Excluir Produto");
+        jbExcluir.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirActionPerformed(evt);
+            }
+        });
 
         jmArquivo.setText("Arquivo");
 
@@ -174,14 +184,14 @@ public class GerenciaProdutos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelValorTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonEsgotado))
+                        .addComponent(jbEstoqueBaixo))
                     .addComponent(jspTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jbNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jbAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(jbExcluir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -189,14 +199,14 @@ public class GerenciaProdutos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jbNovo)
+                    .addComponent(jbAlterar)
+                    .addComponent(jbExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jspTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonEsgotado)
+                    .addComponent(jbEstoqueBaixo)
                     .addComponent(labelValorTotal)
                     .addComponent(labelTextoValor))
                 .addGap(21, 21, 21))
@@ -206,9 +216,9 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonEsgotadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEsgotadoActionPerformed
+    private void jbEstoqueBaixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEstoqueBaixoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonEsgotadoActionPerformed
+    }//GEN-LAST:event_jbEstoqueBaixoActionPerformed
 
     private void jmiNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNovoActionPerformed
         carregaJanela(1);
@@ -229,9 +239,19 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         carregaJanela(2);
     }//GEN-LAST:event_jmiSobreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         carregaJanela(1);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbNovoActionPerformed
+
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        Pesquisar tela = new PesquisarID("alterar");
+        tela.setVisible(true);
+    }//GEN-LAST:event_jbAlterarActionPerformed
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        Pesquisar tela = new PesquisarID("apagar");
+        tela.setVisible(true);
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     
     
@@ -271,12 +291,12 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonEsgotado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton jbAlterar;
+    private javax.swing.JButton jbEstoqueBaixo;
+    private javax.swing.JButton jbExcluir;
+    private javax.swing.JButton jbNovo;
     private javax.swing.JMenu jmAjuda;
     private javax.swing.JMenu jmArquivo;
     private javax.swing.JMenu jmProduto;

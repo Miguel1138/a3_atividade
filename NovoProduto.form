@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Produto"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -108,7 +109,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtfNome">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="toolTipText" type="java.lang.String" value="M&#xed;nimo 2 (dois) caracteres."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfNomeActionPerformed"/>
@@ -130,6 +131,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfFornecedor">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Obrigat&#xf3;rio informar fornecedor."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelEstoque">
       <Properties>
@@ -137,6 +141,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfEstoque">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Deve haver no m&#xed;nimo 1 (um) item dispon&#xed;vel."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelPreco">
       <Properties>
@@ -144,6 +151,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfPreco">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="N&#xe3;o pode ser igual a R$0,00."/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbCancelar">
       <Properties>

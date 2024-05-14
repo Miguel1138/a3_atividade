@@ -37,10 +37,11 @@ public class NovoProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Produto");
+        setResizable(false);
 
         labelNome.setText("Nome");
 
-        jtfNome.setToolTipText("");
+        jtfNome.setToolTipText("Mínimo 2 (dois) caracteres.");
         jtfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfNomeActionPerformed(evt);
@@ -57,9 +58,15 @@ public class NovoProduto extends javax.swing.JFrame {
 
         labelFornecedor.setText("Fornecedor");
 
+        jtfFornecedor.setToolTipText("Obrigatório informar fornecedor.");
+
         labelEstoque.setText("Estoque");
 
+        jtfEstoque.setToolTipText("Deve haver no mínimo 1 (um) item disponível.");
+
         labelPreco.setText("Preço");
+
+        jtfPreco.setToolTipText("Não pode ser igual a R$0,00.");
 
         jbCancelar.setText("Cancelar");
         jbCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -165,27 +172,31 @@ public class NovoProduto extends javax.swing.JFrame {
             float preco = 0f;
             String Data_cadastro = "";
             String fornecedor = "";
-
+            
             if (this.jtfNome.getText().length() < 2) {
-                // TO-DO: Tela de aviso: texto deve ter mais de 2 caracteres
+                Erro tela = new Erro("Nome deve possuir mais que 2 caracteres.");
+                tela.setVisible(true);
             } else {
                 nome_produto = this.jtfNome.getText();
             }
 
             if (this.jtfDescricao.getText().length() <= 0) {
-                // TO-DO: Tela de aviso: texto deve ter mais de 2 caracteres
+                Erro tela = new Erro("O campo descrição não pode estar vazio.");
+                tela.setVisible(true);
             } else {
                 descricao_produto = this.jtfDescricao.getText();
             }
             
             if (this.jtfEstoque.getText().length() < 1) {
-                // TO-DO: Tela de aviso: deve cadastrar produto com pelo menos 1 unidade disponível
+                Erro tela = new Erro("Produto deve dispor ao menos uma unidade no estoque.");
+                tela.setVisible(true);
             } else {
                 quantidade_estoque = Integer.parseInt(this.jtfEstoque.getText());
             }
 
             if (this.jtfPreco.getText().length() <= 0) {
-                // TO-DO: Deve ser informado um valor
+                Erro tela = new Erro("Preço deve ser informado e acima de R$0,00.");
+                tela.setVisible(true);
             } else {
                 preco = Float.parseFloat(this.jtfPreco.getText());
             }
@@ -193,14 +204,15 @@ public class NovoProduto extends javax.swing.JFrame {
             // Para a data, será cadastrada automaticamente no momento do envio.
             
             if (this.jtfFornecedor.getText().length() <= 0) {
-                // TO-DO: Deve ser informado um valor
+                Erro tela = new Erro("O campo fornecedor não pode estar vazio.");
+                tela.setVisible(true);
             } else {
                 fornecedor = this.jtfFornecedor.getText();
             }
             
             boolean hasInserted = dao.insertProdutoMockDB(objproduto);
             if(hasInserted) {
-                 GerenciaProdutos gProdutos = new GerenciaProdutos();
+                GerenciaProdutos gProdutos = new GerenciaProdutos();
                 gProdutos.atualizarPlanilha();
                 this.setVisible(false);
             } else {
