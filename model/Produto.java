@@ -9,13 +9,14 @@ public class Produto {
     private String descricao_produto;
     private int quantidade_estoque;
     private float preco;
-    private Date data_cadastro;
+    private String data_cadastro;
     private String fornecedor;
 
     public Produto() {
     }
 
-    public Produto(int id_produto, String nome_produto, String descricao_produto, int quantidade_estoque, float preco, Date data_cadastro, String fornecedor) {
+    public Produto(int id_produto, String nome_produto, String descricao_produto, 
+            int quantidade_estoque, float preco, String data_cadastro, String fornecedor) {
         this.id_produto = id_produto;
         this.nome_produto = nome_produto;
         this.descricao_produto = descricao_produto;
@@ -65,11 +66,11 @@ public class Produto {
         this.preco = preco;
     }
 
-    public Date getData_cadastro() {
+    public String getData_cadastro() {
         return data_cadastro;
     }
 
-    public void setData_cadastro(Date data_cadastro) {
+    public void setData_cadastro(String data_cadastro) {
         this.data_cadastro = data_cadastro;
     }
 
