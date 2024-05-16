@@ -117,9 +117,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfFornecedor">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfFornecedorActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelEstoque">
       <Properties>
@@ -127,9 +124,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfEstoque">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfEstoqueActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelPreco">
       <Properties>
@@ -137,9 +131,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfPreco">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfPrecoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbCancelar">
       <Properties>
@@ -163,14 +154,8 @@
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfNomeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfDescricao">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfDescricaoActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

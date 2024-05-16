@@ -71,6 +71,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiSobreActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -109,7 +112,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelValorTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="buttonEsgotado" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonEstqBaixo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBtnVoltar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -137,9 +142,10 @@
               <Component id="jspTabela" min="-2" pref="230" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buttonEsgotado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonEstqBaixo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelValorTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelTextoValor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtnVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -224,18 +230,21 @@
         <Property name="text" type="java.lang.String" value="R$ 0,00"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="buttonEsgotado">
+    <Component class="javax.swing.JButton" name="buttonEstqBaixo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mostrar Em Falta"/>
+        <Property name="text" type="java.lang.String" value="Produtos em Estoque Baixo"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEsgotadoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEstqBaixoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo Produto"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
@@ -246,6 +255,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir Produto"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtnVoltar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Voltar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnVoltarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

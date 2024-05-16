@@ -1,6 +1,7 @@
 package view;
 
 import Model.Produto;
+import controller.ProdutoController;
 import dao.ProdutoDAO;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,7 +9,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class NovoProduto extends javax.swing.JFrame {
-    private Produto objproduto;
     
     public NovoProduto() {
         initComponents();
@@ -46,27 +46,9 @@ public class NovoProduto extends javax.swing.JFrame {
 
         labelFornecedor.setText("Fornecedor");
 
-        jtfFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfFornecedorActionPerformed(evt);
-            }
-        });
-
         labelEstoque.setText("Estoque");
 
-        jtfEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfEstoqueActionPerformed(evt);
-            }
-        });
-
         labelPreco.setText("Preço");
-
-        jtfPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfPrecoActionPerformed(evt);
-            }
-        });
 
         jbCancelar.setText("Cancelar");
         jbCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,17 +65,6 @@ public class NovoProduto extends javax.swing.JFrame {
         });
 
         jtfNome.setToolTipText("");
-        jtfNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNomeActionPerformed(evt);
-            }
-        });
-
-        jtfDescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDescricaoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,111 +136,30 @@ public class NovoProduto extends javax.swing.JFrame {
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         this.setVisible(false);
+        GerenciaProdutos gp = new GerenciaProdutos();
+        gp.setVisible(true);
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConfirmarActionPerformed
-        
-            ProdutoDAO dao = new ProdutoDAO();
-            this.objproduto = new Produto();
+            Produto produto = new Produto();
             
-            String nome_produto = "";
-            String descricao_produto = "";
-            int quantidade_estoque = 0;
-            float preco = 0f;
-            String fornecedor = "";
-
-            if (this.jtfNome.getText().length() < 2) {
-                   
-            } else {
-                nome_produto = this.jtfNome.getText();
-            }
-
-            if (this.jtfDescricao.getText().length() <= 0) {
-                // TO-DO: Tela de aviso: texto deve ter mais de 2 caracteres
-            } else {
-                descricao_produto = this.jtfDescricao.getText();
-            }
+            produto.setNome_produto(this.jtfNome.getText());
+            produto.setDescricao_produto(this.jtfDescricao.getText());
+            produto.setQuantidade_estoque(Integer.parseInt(this.jtfEstoque.getText()));
+            produto.setPreco(Float.parseFloat(this.jtfPreco.getText()));
+            produto.setFornecedor(this.jtfFornecedor.getText());
             
-            if (this.jtfEstoque.getText().length() < 1) {
-                // TO-DO: Tela de aviso: deve cadastrar produto com pelo menos 1 unidade disponível
-            } else {
-                quantidade_estoque = Integer.parseInt(this.jtfEstoque.getText());
-            }
-
-            if (this.jtfPreco.getText().length() <= 0) {
-                // TO-DO: Deve ser informado um valor
-            } else {
-                preco = Float.parseFloat(this.jtfPreco.getText());
-            }
-            
-            // Para a data, será cadastrada automaticamente no momento do envio.
-            
-            
-            if (this.jtfFornecedor.getText().length() <= 0) {
-                // TO-DO: Deve ser informado um valor
-            } else {
-                fornecedor = this.jtfFornecedor.getText();
-            }
-            
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date date = new Date();
-            
-            objproduto.setNome_produto(nome_produto);
-            objproduto.setDescricao_produto(descricao_produto);
-            objproduto.setData_cadastro(dateFormat.format(date));
-            objproduto.setFornecedor(fornecedor);
-            objproduto.setPreco(preco);
-            objproduto.setQuantidade_estoque(quantidade_estoque);
-            
-            boolean hasInserted = dao.InsertProdutoDB(objproduto);
-            if(hasInserted) {
-                // TODO - Atualizar planilha após a inserção do banco de dados.
+            ProdutoController controller = new ProdutoController();
+            boolean hasInsertedData = controller.inserirNovo(produto);
+            if(hasInsertedData) {
                 GerenciaProdutos gProdutos = new GerenciaProdutos();
                 gProdutos.atualizarPlanilha();
-                this.setVisible(false);
+                setVisible(false);
             } else {
-                JOptionPane.showConfirmDialog(null, "Erro: Cadastro não efetuado!");
+                Dispatcher.showErrorMessage(DispatcherLog.ERRO_CADASTRO_NAO_EFETUADO);
             }
            
-            
-            // envia os dados para o Controlador cadastrar
-//            if (this.dao(nome_produto, descricao_produto, quantidade_estoque, preco, fornecedor)) {
-//                this.c_nome.setText("");
-//                this.c_idade.setText("");
-//                this.c_curso.setText("");
-//                this.c_fase.setText("");
-//                
-//                this.setVisible(false);
-//            }
-
-          
-
-        // } catch (Mensagens erro) {
-            // JOptionPane.showMessageDialog(null, erro.getMessage());
-        // } catch (NumberFormatException erro2) {
-            // JOptionPane.showMessageDialog(null, "Informe um número.");
-        
     }//GEN-LAST:event_jbConfirmarActionPerformed
-
-    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNomeActionPerformed
-
-    private void jtfFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfFornecedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfFornecedorActionPerformed
-
-    private void jtfDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDescricaoActionPerformed
-
-    private void jtfEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfEstoqueActionPerformed
-
-    private void jtfPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfPrecoActionPerformed
 
     /**
      * @param args the command line arguments
