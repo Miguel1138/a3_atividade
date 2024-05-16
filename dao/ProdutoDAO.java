@@ -74,7 +74,7 @@ public class ProdutoDAO {
     }
 
     // Retorna a Lista de Alunos(objetos)
-    public ArrayList getMinhaLista() {
+    public ArrayList<Produto> getMinhaLista() {
         
         produtos_list.clear(); // Limpa nosso ArrayList
 
@@ -177,10 +177,11 @@ public class ProdutoDAO {
     
     
     
-    public void carregaEsgotados() {
+    public ArrayList<Produto> carregaEstoqueBaixo() {
         String sql = "SELECT * FROM  tb_produto "
-                + " WHERE quantidade_estoque = 0";
+                + " WHERE quantidade_estoque <= 100";
         
+        produtos_list.clear();
         try {
              Statement stmt = this.getConexao().createStatement();
              ResultSet res = stmt.executeQuery(sql);
@@ -202,6 +203,8 @@ public class ProdutoDAO {
         } catch(Exception e) {
             // TODO: Tratar Exceção.
         }
+        
+        return produtos_list;
     }
 
     public Produto carregaProduto(int id) {
