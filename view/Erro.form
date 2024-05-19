@@ -28,7 +28,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jlTexto" max="32767" attributes="0"/>
+                  <Component id="jlErroMotivo" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jlMotivo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -38,7 +38,8 @@
                       <Component id="jbOk" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jsSeparador" max="32767" attributes="0"/>
-                  <Component id="jlTitulo" alignment="1" pref="235" max="32767" attributes="0"/>
+
+                  <Component id="jlTitulo" alignment="1" pref="305" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -52,8 +53,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jlMotivo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jlTexto" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jlErroMotivo" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
               <Component id="jsSeparador" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jbOk" min="-2" max="-2" attributes="0"/>
@@ -74,7 +75,7 @@
         <Property name="text" type="java.lang.String" value="Motivo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlTexto">
+    <Component class="javax.swing.JLabel" name="jlErroMotivo">
       <Properties>
         <Property name="text" type="java.lang.String" value="[Insira motivo aqui]"/>
         <Property name="verticalAlignment" type="int" value="1"/>

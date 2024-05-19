@@ -4,19 +4,19 @@
  */
 package view;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author User
  */
-public final class Dispatcher extends Exception {
-    public static String showErrorMessage(int msg) {
+public final class Dispatcher extends Exception{
+     
+    public static String mostrarMensagemDeErro(DispatcherLog msg) {
+        
         switch(msg) {
-            case 0 -> { return "Nome do produto deve ter mais do que 2 caracteres"; }
-            case 1 -> { return "Estoque não deve ser zero!"; }
-            case 2 -> { return "Preço está zerado ou negativo!"; }
-            case 3 -> { return "Você deve informar o nome do fornecedor!"; }
+            case ERRO_NOME_MENOR_2 -> { return "Nome do produto deve ter mais do que 2 caracteres"; }
+            case ERRO_ESTOQUE_ZERADO -> { return "Estoque não deve ser zero!"; }
+            case ERRO_PRECO_ZERADO_OU_ABAIXO -> { return "Preço está zerado ou negativo!"; }
+            case ERRO_FORNECEDOR_VAZIO -> { return "Você deve informar o nome do fornecedor!"; }
         }
 
         return "Erro não mapeado";

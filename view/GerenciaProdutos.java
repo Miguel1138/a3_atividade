@@ -5,11 +5,13 @@
 package view;
 
 import Model.Produto;
-import dao.ProdutoDAO;
-import java.util.ArrayList;
+import controller.ProdutoController;
+
 import javax.swing.table.DefaultTableModel;
 
 public class GerenciaProdutos extends javax.swing.JFrame {
+    
+    private final ProdutoController controller = new ProdutoController();
 
     private ProdutoDAO dao = new ProdutoDAO();
 
@@ -33,6 +35,7 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         labelTextoValor = new javax.swing.JLabel();
         labelValorTotal = new javax.swing.JLabel();
         buttonEstqBaixo = new javax.swing.JButton();
+      
         jbNovo = new javax.swing.JButton();
         jbAlterar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
@@ -84,7 +87,8 @@ public class GerenciaProdutos extends javax.swing.JFrame {
 
         buttonEstqBaixo.setText("Produtos em Estoque Baixo");
         buttonEstqBaixo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+           
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEstqBaixoActionPerformed(evt);
             }
         });
@@ -211,6 +215,7 @@ public class GerenciaProdutos extends javax.swing.JFrame {
                     .addComponent(jbExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jspTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonEstqBaixo)
@@ -225,15 +230,11 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonEstqBaixoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEstqBaixoActionPerformed
-        // TODO add your handling code here:
-        // Chamar método de busca com base no valor estoque
         this.setVisible(false);
         DefaultTableModel modelo = (DefaultTableModel) this.tableProdutos.getModel();
         modelo.setNumRows(0);
-                
-        ArrayList<Produto> produtos_lista = new ArrayList<>(); 
-        produtos_lista = dao.carregaEstoqueBaixo();
-        for(Produto p: produtos_lista){
+
+        for(Produto p: controller.carregaEstoqueBaixo()){
            modelo.addRow(new Object[]{
             p.getId_produto(),
             p.getNome_produto(),
@@ -251,24 +252,16 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_buttonEstqBaixoActionPerformed
 
-    private void jmiNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNovoActionPerformed
-        carregaJanela(1, -1);
-    }//GEN-LAST:event_jmiNovoActionPerformed
-
-    private void jmiAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlterarActionPerformed
-        carregaJanela(3, 1);
-    }//GEN-LAST:event_jmiAlterarActionPerformed
-
     private void jmiSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jmiSairActionPerformed
 
     private void jmiSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSobreActionPerformed
-        carregaJanela(2, -1);
+        carregaJanela(Telas.SOBRE, -1);
     }//GEN-LAST:event_jmiSobreActionPerformed
-
-    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
-        carregaJanela(1, -1);
+   
+  private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
+        carregaJanela(Telas.NOVO_PRODUTO, -1);
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jBtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltarActionPerformed
@@ -278,18 +271,21 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnVoltarActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        carregaJanela(3, 1);
+        carregaJanela(Telas.ALTERAR_PRODUTO, 1);
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        carregaJanela(3, 2);
+        carregaJanela(Telas.EXCLUIR_PRODUTO, 2);
     }//GEN-LAST:event_jbExcluirActionPerformed
 
-    private void jmiApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiApagarActionPerformed
-        carregaJanela(3, 2);
-    }//GEN-LAST:event_jmiApagarActionPerformed
+    private void jmiAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlterarActionPerformed
+        carregaJanela(Telas.ALTERAR_PRODUTO, 1);
+    }//GEN-LAST:event_jmiAlterarActionPerformed
 
-    
+    private void jmiNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNovoActionPerformed
+        carregaJanela(Telas.NOVO_PRODUTO, -1);
+    }//GEN-LAST:event_jmiNovoActionPerformed
+  
     
     /**
      * @param args the command line arguments
@@ -329,6 +325,7 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEstqBaixo;
     private javax.swing.JButton jBtnVoltar;
+
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbNovo;
@@ -350,11 +347,8 @@ public class GerenciaProdutos extends javax.swing.JFrame {
    private void carregarDados() {
        DefaultTableModel modelo = (DefaultTableModel) this.tableProdutos.getModel();
        modelo.setNumRows(0);
-       
-       ArrayList<Produto> produtos_lista = new ArrayList<>();
-
-       produtos_lista = dao.getMinhaLista();
-       for(Produto p: produtos_lista){
+       // Retorna a lista já instanciando a tabela.
+       for(Produto p: controller.getProdutoLista()){
            modelo.addRow(new Object[]{
             p.getId_produto(),
             p.getNome_produto(),
@@ -364,31 +358,40 @@ public class GerenciaProdutos extends javax.swing.JFrame {
             p.getData_cadastro(),
             p.getFornecedor(),
            });
-       }  
+       }
+       
   }
    
-    private void carregaJanela(int janela, int flag) {
+    private void carregaJanela(Telas janela, int flag) {
         switch(janela) {
-            case 1 -> { 
-                NovoProduto tela1 = new NovoProduto();
+            case NOVO_PRODUTO -> { 
+                NovoProduto tela = new NovoProduto();
                 this.setVisible(false);
-                tela1.setVisible(true);
+                tela.setVisible(true);
             }
-            case 2 -> {
-                Sobre tela2 = new Sobre();
-                tela2.setVisible(true);
-            }
-            case 3 -> {
-                PesquisarID tela3 = new PesquisarID(flag);
-                tela3.setVisible(true);
+            case SOBRE -> {
+                Sobre tela = new Sobre();
                 this.setVisible(false);
+                tela.setVisible(true);
+            }
+            
+            case ALTERAR_PRODUTO -> {
+                PesquisarProduto tela = new PesquisarProduto(flag);
+                this.setVisible(false);
+                tela.setVisible(true);
+            }
+            
+            case EXCLUIR_PRODUTO -> {
+                PesquisarProduto tela = new PesquisarProduto(flag);
+                this.setVisible(false);
+                tela.setVisible(true);
             }
         }
     }
 
     public void atualizarPlanilha() {
-// TODO atualizar lista após inserção no banco.;
         carregarDados();
         this.setVisible(true);
     }
+        
 }

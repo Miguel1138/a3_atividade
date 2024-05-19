@@ -9,7 +9,7 @@ package view;
  * @author Gabriel
  */
 public class Sobre extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Sobre
      */
@@ -62,6 +62,7 @@ public class Sobre extends javax.swing.JFrame {
         jpCor.setBackground(new java.awt.Color(2, 64, 141));
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/unisul.png"))); // NOI18N
 
         javax.swing.GroupLayout jpCorLayout = new javax.swing.GroupLayout(jpCor);
         jpCor.setLayout(jpCorLayout);
@@ -93,6 +94,10 @@ public class Sobre extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jlVitor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlHenrique, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlGabriel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)

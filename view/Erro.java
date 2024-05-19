@@ -14,9 +14,12 @@ public class Erro extends javax.swing.JFrame {
     /**
      * Creates new form Erro
      */
+    private static String motivo = "";
+    
     public Erro(String motivo) {
         initComponents();
-        motivo = this.jlMotivo.getText();
+        this.jlErroMotivo.setText(motivo);
+        Erro.motivo = motivo;
     }
 
     /**
@@ -30,7 +33,7 @@ public class Erro extends javax.swing.JFrame {
 
         jlTitulo = new javax.swing.JLabel();
         jlMotivo = new javax.swing.JLabel();
-        jlTexto = new javax.swing.JLabel();
+        jlErroMotivo = new javax.swing.JLabel();
         jsSeparador = new javax.swing.JSeparator();
         jbOk = new javax.swing.JButton();
 
@@ -43,8 +46,8 @@ public class Erro extends javax.swing.JFrame {
 
         jlMotivo.setText("Motivo:");
 
-        jlTexto.setText("[Insira motivo aqui]");
-        jlTexto.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlErroMotivo.setText("[Insira motivo aqui]");
+        jlErroMotivo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jbOk.setText("OK");
         jbOk.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +63,7 @@ public class Erro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlErroMotivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlMotivo)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -68,7 +71,7 @@ public class Erro extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbOk))
                     .addComponent(jsSeparador)
-                    .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                    .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -79,8 +82,8 @@ public class Erro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlMotivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlErroMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jsSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbOk)
@@ -125,15 +128,15 @@ public class Erro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Erro().setVisible(true);
+                new Erro(motivo).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbOk;
+    private javax.swing.JLabel jlErroMotivo;
     private javax.swing.JLabel jlMotivo;
-    private javax.swing.JLabel jlTexto;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JSeparator jsSeparador;
     // End of variables declaration//GEN-END:variables

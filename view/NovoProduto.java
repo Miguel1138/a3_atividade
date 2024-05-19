@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
+
 public class NovoProduto extends javax.swing.JFrame {
     
     public NovoProduto() {
@@ -145,20 +146,28 @@ public class NovoProduto extends javax.swing.JFrame {
             
             produto.setNome_produto(this.jtfNome.getText());
             produto.setDescricao_produto(this.jtfDescricao.getText());
-            produto.setQuantidade_estoque(Integer.parseInt(this.jtfEstoque.getText()));
-            produto.setPreco(Float.parseFloat(this.jtfPreco.getText()));
+            if(this.jtfEstoque.getText().isBlank() || 
+                    this.jtfEstoque.getText().isEmpty()) {
+                produto.setQuantidade_estoque(Integer.MIN_VALUE);
+            } else {
+                produto.setQuantidade_estoque(Integer.parseInt(this.jtfEstoque.getText()));
+            }
+            if(this.jtfPreco.getText().isEmpty() || 
+                    this.jtfPreco.getText().isBlank()) {
+                produto.setPreco(Float.MIN_VALUE);
+            } else { 
+                produto.setPreco(Float.parseFloat(this.jtfPreco.getText()));
+            }
             produto.setFornecedor(this.jtfFornecedor.getText());
             
             ProdutoController controller = new ProdutoController();
-            boolean hasInsertedData = controller.inserirNovo(produto);
-            if(hasInsertedData) {
+            boolean dadoFoiInserido = controller.inserirNovo(produto);
+            
+            if(dadoFoiInserido) {
                 GerenciaProdutos gProdutos = new GerenciaProdutos();
                 gProdutos.atualizarPlanilha();
                 setVisible(false);
-            } else {
-                Dispatcher.showErrorMessage(DispatcherLog.ERRO_CADASTRO_NAO_EFETUADO);
             }
-           
     }//GEN-LAST:event_jbConfirmarActionPerformed
 
     /**
