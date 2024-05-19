@@ -16,31 +16,10 @@ public class ProdutoDAO {
     public ProdutoDAO() {
     }
 
-    public int maiorID() throws SQLException {
-
-        int maiorID = 0;
-        try {
-            Statement stmt = this.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(id_produto) id_produto FROM tb_produto");
-            res.next();
-            maiorID = res.getInt("id_produto");
-
-            stmt.close();
-
-        } catch (SQLException ex) {
-        }
-
-        return maiorID;
-    }
-    
-    
-
     public Connection getConexao() {
-
         Connection connection = null;  //inst�ncia da conex�o
 
         try {
-
             // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
@@ -73,9 +52,8 @@ public class ProdutoDAO {
         }
     }
 
-    // Retorna a Lista de Alunos(objetos)
+    // Retorna a Lista de Produto (objetos)
     public ArrayList<Produto> getMinhaLista() {
-        
         produtos_list.clear(); // Limpa nosso ArrayList
 
         try {
@@ -99,13 +77,12 @@ public class ProdutoDAO {
 
             stmt.close();
 
-        } catch (SQLException ex) {
-        }
+        } catch (SQLException ex) {        }
 
         return produtos_list;
     }
 
-    // Cadastra novo aluno
+    // Cadastra novo Produto
     public boolean InsertProdutoDB(Produto objeto) {
         String sql = "INSERT INTO tb_produto( " + 
                 "nome_produto,descricao_produto,quantidade_estoque,preco,data_cadastro, fornecedor" + 
@@ -133,22 +110,20 @@ public class ProdutoDAO {
 
     }
 
-    // Deleta um aluno espec�fico pelo seu campo ID
+    // Deleta um Produto espec�fico pelo seu campo ID
     public boolean DeleteProdutoDB(int id) {
         try {
             Statement stmt = this.getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_produto WHERE id_produto = " + id);
             stmt.close();            
             
-        } catch (SQLException erro) {
-        }
+        } catch (SQLException erro) {        }
         
         return true;
     }
 
-    // Edita um aluno espec�fico pelo seu campo ID
+    // Edita um Produto espec�fico pelo seu campo ID
     public boolean UpdateProdutoDB(Produto objeto) {
-        // TODO Como fazeR A BUSCA POR iD.
         String sql = "UPDATE tb_produto set nome_produto = ? ,descricao_produto = ? ,quantidade_estoque = ? ,preco = ?, data_cadastro = ?, fornecedor = ?"
                 + " WHERE id_produto = ?";
 
@@ -175,8 +150,6 @@ public class ProdutoDAO {
 
     }
     
-    
-    
     public ArrayList<Produto> carregaEstoqueBaixo() {
         String sql = "SELECT * FROM  tb_produto "
                 + " WHERE quantidade_estoque <= 100";
@@ -186,7 +159,7 @@ public class ProdutoDAO {
              Statement stmt = this.getConexao().createStatement();
              ResultSet res = stmt.executeQuery(sql);
              
-               while (res.next()) {
+             while (res.next()) {
                 int id = res.getInt("id_produto");
                 String nome = res.getString("nome_produto");
                 String descricao = res.getString("descricao_produto");
@@ -208,7 +181,6 @@ public class ProdutoDAO {
     }
 
     public Produto carregaProduto(int id) {
-        
         Produto objeto = new Produto();
         objeto.setId_produto(id);
         

@@ -1,7 +1,5 @@
 package Model;
 
-import java.sql.Date;
-
 public class Produto {
 
     private int id_produto;
@@ -81,11 +79,5 @@ public class Produto {
     public void setFornecedor(String fornecedor) {
         this.fornecedor = fornecedor;
     }
-
-    
-    
-    
-    
-    
     
 }
