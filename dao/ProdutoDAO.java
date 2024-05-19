@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
 
 public class ProdutoDAO {
 
@@ -17,31 +16,10 @@ public class ProdutoDAO {
     public ProdutoDAO() {
     }
 
-    public int maiorID() throws SQLException {
-
-        int maiorID = 0;
-        try {
-            Statement stmt = this.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT MAX(id_produto) id_produto FROM tb_produto");
-            res.next();
-            maiorID = res.getInt("id_produto");
-
-            stmt.close();
-
-        } catch (SQLException ex) {
-        }
-
-        return maiorID;
-    }
-    
-    
-
     public Connection getConexao() {
-
         Connection connection = null;  //inst�ncia da conex�o
 
         try {
-
             // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
@@ -74,9 +52,8 @@ public class ProdutoDAO {
         }
     }
 
-    // Retorna a Lista de Alunos(objetos)
-    public ArrayList getMinhaLista() {
-        
+    // Retorna a Lista de Produto (objetos)
+    public ArrayList<Produto> getMinhaLista() {
         produtos_list.clear(); // Limpa nosso ArrayList
 
         try {
@@ -90,7 +67,7 @@ public class ProdutoDAO {
                 String descricao = res.getString("descricao_produto");
                 int estoque = res.getInt("quantidade_estoque");
                 float preco = res.getFloat("preco");
-                Date dataCadastro = res.getDate("data_cadastro");
+                String dataCadastro = res.getString("data_cadastro");
                 String fornecedor = res.getString("fornecedor");
                 
                 Produto objeto = new Produto(id, nome, descricao, estoque, preco, dataCadastro, fornecedor);
@@ -100,13 +77,12 @@ public class ProdutoDAO {
 
             stmt.close();
 
-        } catch (SQLException ex) {
-        }
+        } catch (SQLException ex) {        }
 
         return produtos_list;
     }
 
-    // Cadastra novo aluno
+    // Cadastra novo Produto
     public boolean InsertProdutoDB(Produto objeto) {
         String sql = "INSERT INTO tb_produto( " + 
                 "nome_produto,descricao_produto,quantidade_estoque,preco,data_cadastro, fornecedor" + 
@@ -119,8 +95,7 @@ public class ProdutoDAO {
             stmt.setString(2, objeto.getDescricao_produto());
             stmt.setInt(3, objeto.getQuantidade_estoque());
             stmt.setFloat(4, objeto.getPreco());
-            // TODO: Pesquisar sobre casting de date util e sql.
-            stmt.setDate(5, objeto.getData_cadastro());
+            stmt.setString(5, objeto.getData_cadastro());
             stmt.setString(6, objeto.getFornecedor());            
             
             stmt.execute();
@@ -135,22 +110,20 @@ public class ProdutoDAO {
 
     }
 
-    // Deleta um aluno espec�fico pelo seu campo ID
+    // Deleta um Produto espec�fico pelo seu campo ID
     public boolean DeleteProdutoDB(int id) {
         try {
             Statement stmt = this.getConexao().createStatement();
             stmt.executeUpdate("DELETE FROM tb_produto WHERE id_produto = " + id);
             stmt.close();            
             
-        } catch (SQLException erro) {
-        }
+        } catch (SQLException erro) {        }
         
         return true;
     }
 
-    // Edita um aluno espec�fico pelo seu campo ID
+    // Edita um Produto espec�fico pelo seu campo ID
     public boolean UpdateProdutoDB(Produto objeto) {
-        // TODO Como fazeR A BUSCA POR iD.
         String sql = "UPDATE tb_produto set nome_produto = ? ,descricao_produto = ? ,quantidade_estoque = ? ,preco = ?, data_cadastro = ?, fornecedor = ?"
                 + " WHERE id_produto = ?";
 
@@ -161,7 +134,7 @@ public class ProdutoDAO {
             stmt.setString(2, objeto.getDescricao_produto());
             stmt.setInt(3, objeto.getQuantidade_estoque());
             stmt.setFloat(4, objeto.getPreco());
-            stmt.setDate(5, objeto.getData_cadastro());
+            stmt.setString(5, objeto.getData_cadastro());
             stmt.setString(6, objeto.getFornecedor());
             
             stmt.setInt(7, objeto.getId_produto());
@@ -177,23 +150,22 @@ public class ProdutoDAO {
 
     }
     
-    
-    
-    public void carregaEsgotados() {
+    public ArrayList<Produto> carregaEstoqueBaixo() {
         String sql = "SELECT * FROM  tb_produto "
-                + " WHERE quantidade_estoque = 0";
+                + " WHERE quantidade_estoque <= 100";
         
+        produtos_list.clear();
         try {
              Statement stmt = this.getConexao().createStatement();
              ResultSet res = stmt.executeQuery(sql);
              
-               while (res.next()) {
+             while (res.next()) {
                 int id = res.getInt("id_produto");
                 String nome = res.getString("nome_produto");
                 String descricao = res.getString("descricao_produto");
                 int estoque = res.getInt("quantidade_estoque");
                 float preco = res.getFloat("preco");
-                Date dataCadastro = res.getDate("data_cadastro");
+                String dataCadastro = res.getString("data_cadastro");
                 String fornecedor = res.getString("fornecedor");
                 
                 Produto objeto = new Produto(id, nome, descricao, estoque, preco, dataCadastro, fornecedor);
@@ -204,10 +176,11 @@ public class ProdutoDAO {
         } catch(Exception e) {
             // TODO: Tratar Exceção.
         }
+        
+        return produtos_list;
     }
 
     public Produto carregaProduto(int id) {
-        
         Produto objeto = new Produto();
         objeto.setId_produto(id);
         
@@ -220,7 +193,7 @@ public class ProdutoDAO {
             objeto.setDescricao_produto(res.getString("descricao_produto"));
             objeto.setQuantidade_estoque(res.getInt("quantidade_estoque"));
             objeto.setPreco(res.getFloat("preco"));
-            objeto.setData_cadastro(res.getDate("data_cadastro"));
+            objeto.setData_cadastro(res.getString("data_cadastro"));
             objeto.setFornecedor(res.getString("fornecedor"));
             
             stmt.close();            
