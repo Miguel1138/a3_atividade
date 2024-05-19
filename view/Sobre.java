@@ -9,7 +9,7 @@ package view;
  * @author Gabriel
  */
 public class Sobre extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Sobre
      */

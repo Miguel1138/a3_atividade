@@ -6,12 +6,14 @@ package view;
 
 /**
  *
- * @author User
+ * @author miguel.sdasilva00@gmail.com
  */
-public final class DispatcherLog {
-    public static int ERRO_NOME_MENOR_2 = 0;
-    public static int ERRO_ESTOQUE_ZERADO = 1;
-    public static int ERRO_PRECO_ZERADO_OU_ABAIXO = 2;
-    public static int ERRO_FORNECEDOR_VAZIO = 3;
-    static int ERRO_CADASTRO_NAO_EFETUADO = 4;
+public enum DispatcherLog {
+    
+    ERRO_NOME_MENOR_2,
+    ERRO_ESTOQUE_ZERADO,
+    ERRO_PRECO_ZERADO_OU_ABAIXO,
+    ERRO_FORNECEDOR_VAZIO,
+    ERRO_CADASTRO_NAO_EFETUADO;
+
 }
