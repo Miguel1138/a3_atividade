@@ -6,15 +6,14 @@ package view;
 
 import Model.Produto;
 import controller.ProdutoController;
+import java.awt.event.ActionEvent;
 
 import javax.swing.table.DefaultTableModel;
 
 public class GerenciaProdutos extends javax.swing.JFrame {
     
     private final ProdutoController controller = new ProdutoController();
-
-    private ProdutoDAO dao = new ProdutoDAO();
-
+    
     public GerenciaProdutos() {
          initComponents();
          jBtnVoltar.setVisible(false);
@@ -35,7 +34,6 @@ public class GerenciaProdutos extends javax.swing.JFrame {
         labelTextoValor = new javax.swing.JLabel();
         labelValorTotal = new javax.swing.JLabel();
         buttonEstqBaixo = new javax.swing.JButton();
-      
         jbNovo = new javax.swing.JButton();
         jbAlterar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
@@ -87,8 +85,7 @@ public class GerenciaProdutos extends javax.swing.JFrame {
 
         buttonEstqBaixo.setText("Produtos em Estoque Baixo");
         buttonEstqBaixo.addActionListener(new java.awt.event.ActionListener() {
-           
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEstqBaixoActionPerformed(evt);
             }
         });
@@ -215,7 +212,6 @@ public class GerenciaProdutos extends javax.swing.JFrame {
                     .addComponent(jbExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jspTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonEstqBaixo)
@@ -257,11 +253,11 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiSairActionPerformed
 
     private void jmiSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSobreActionPerformed
-        carregaJanela(Telas.SOBRE, -1);
+        carregarTela(Telas.SOBRE);
     }//GEN-LAST:event_jmiSobreActionPerformed
    
   private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
-        carregaJanela(Telas.NOVO_PRODUTO, -1);
+        carregarTela(Telas.NOVO_PRODUTO);
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jBtnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVoltarActionPerformed
@@ -271,20 +267,24 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnVoltarActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        carregaJanela(Telas.ALTERAR_PRODUTO, 1);
+        carregarTela(Telas.ALTERAR_PRODUTO);
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        carregaJanela(Telas.EXCLUIR_PRODUTO, 2);
+        carregarTela(Telas.EXCLUIR_PRODUTO);
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jmiAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlterarActionPerformed
-        carregaJanela(Telas.ALTERAR_PRODUTO, 1);
+        carregarTela(Telas.ALTERAR_PRODUTO);
     }//GEN-LAST:event_jmiAlterarActionPerformed
 
     private void jmiNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNovoActionPerformed
-        carregaJanela(Telas.NOVO_PRODUTO, -1);
+        carregarTela(Telas.NOVO_PRODUTO);
     }//GEN-LAST:event_jmiNovoActionPerformed
+
+    private void jmiApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiApagarActionPerformed
+        carregarTela(Telas.EXCLUIR_PRODUTO);
+    }//GEN-LAST:event_jmiApagarActionPerformed
   
     
     /**
@@ -325,7 +325,6 @@ public class GerenciaProdutos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEstqBaixo;
     private javax.swing.JButton jBtnVoltar;
-
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbNovo;
@@ -362,29 +361,29 @@ public class GerenciaProdutos extends javax.swing.JFrame {
        
   }
    
-    private void carregaJanela(Telas janela, int flag) {
-        switch(janela) {
+    private void carregarTela(Telas tela) {
+        switch(tela) {
             case NOVO_PRODUTO -> { 
-                NovoProduto tela = new NovoProduto();
+                NovoProduto nProduto = new NovoProduto();
                 this.setVisible(false);
-                tela.setVisible(true);
+                nProduto.setVisible(true);
             }
             case SOBRE -> {
-                Sobre tela = new Sobre();
+                Sobre sobre = new Sobre();
                 this.setVisible(false);
-                tela.setVisible(true);
+                sobre.setVisible(true);
             }
             
             case ALTERAR_PRODUTO -> {
-                PesquisarProduto tela = new PesquisarProduto(flag);
+                PesquisarID pID = new PesquisarID(tela);
                 this.setVisible(false);
-                tela.setVisible(true);
+                pID.setVisible(true);
             }
             
             case EXCLUIR_PRODUTO -> {
-                PesquisarProduto tela = new PesquisarProduto(flag);
+                PesquisarID pID = new PesquisarID(tela);
                 this.setVisible(false);
-                tela.setVisible(true);
+                pID.setVisible(true);
             }
         }
     }

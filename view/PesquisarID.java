@@ -5,9 +5,8 @@
 package view;
 
 import Model.Produto;
-import dao.ProdutoDAO;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import controller.ProdutoController;
+
 
 /**
  *
@@ -15,26 +14,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PesquisarID extends javax.swing.JFrame {
     
-    private static int flag;
-    private final int ALTERAR_PRODUTO = 1;
-    private final int DELETAR_PRODUTO = 2;
+    private static Telas flag;    
+    private final ProdutoController controller;
+    private Produto produto;
     
-    ProdutoDAO dao1 = new ProdutoDAO();
-    Produto produto1 = new Produto();
-    
-    public PesquisarID(int flag) {
-        this.flag = flag;
+    public PesquisarID(Telas flag) {
+        this.controller = new ProdutoController();
+        PesquisarID.flag = flag;
         initComponents();
-        if (flag == ALTERAR_PRODUTO){
+        if (flag == Telas.ALTERAR_PRODUTO){
             this.jbConfirmar.setText("Alterar");
-        } else if (flag == DELETAR_PRODUTO) {
+        } else if (flag == Telas.EXCLUIR_PRODUTO) {
             this.jbConfirmar.setText("Excluir");
         }
-    }
-    
-    public void AtualizarVariavel(ProdutoDAO dao, Produto produto) {
-        dao1 = dao;
-        produto1 = produto;
     }
     
     @SuppressWarnings("unchecked")
@@ -53,7 +45,7 @@ public class PesquisarID extends javax.swing.JFrame {
         jtfPreco = new javax.swing.JTextField();
         jtfEstoque = new javax.swing.JTextField();
         jlData = new javax.swing.JLabel();
-        jtfEstoque1 = new javax.swing.JTextField();
+        jtfFornecedor = new javax.swing.JTextField();
         jlID1 = new javax.swing.JLabel();
         jlID2 = new javax.swing.JLabel();
         jlID3 = new javax.swing.JLabel();
@@ -105,7 +97,7 @@ public class PesquisarID extends javax.swing.JFrame {
 
         jlData.setText("Data de Cadastro:");
 
-        jtfEstoque1.setText("Fornecedor");
+        jtfFornecedor.setText("Fornecedor");
 
         jlID1.setText("Descrição: ");
 
@@ -140,7 +132,7 @@ public class PesquisarID extends javax.swing.JFrame {
                             .addComponent(jlID5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfEstoque1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                            .addComponent(jtfFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
                             .addComponent(jtfEstoque)
                             .addComponent(jtfPreco)
                             .addComponent(jtfDescricao)
@@ -172,8 +164,8 @@ public class PesquisarID extends javax.swing.JFrame {
                     .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlID2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlID1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -185,7 +177,7 @@ public class PesquisarID extends javax.swing.JFrame {
                     .addComponent(jlID3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfEstoque1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlID5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,26 +200,20 @@ public class PesquisarID extends javax.swing.JFrame {
 
     private void jbLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLocalizarActionPerformed
         int id = Integer.parseInt(this.jtfCampo.getText());
-        ProdutoDAO dao = new ProdutoDAO();
-        Produto produto = dao.carregaProduto(id);
-        AtualizarVariavel(dao, produto);
+        produto = controller.carregaProdutoPelo(id);
+        preencheDados();
         
-        this.jlID.setText("ID: " + Integer.toString(produto.getId_produto()));
-        this.jtfNome.setText(produto.getNome_produto());
-        this.jtfDescricao.setText(produto.getDescricao_produto());
-        this.jtfEstoque.setText(Integer.toString(produto.getQuantidade_estoque()));
-        this.jtfPreco.setText(Float.toString(produto.getPreco()));
-        this.jlData.setText("Data de Cadastro: " + produto.getData_cadastro());
     }//GEN-LAST:event_jbLocalizarActionPerformed
 
     private void jbConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConfirmarActionPerformed
-        produto1.setNome_produto(this.jtfNome.getText());
-        produto1.setDescricao_produto(this.jtfDescricao.getText());
-        produto1.setQuantidade_estoque(Integer.parseInt(this.jtfEstoque.getText()));
-        produto1.setPreco(Float.parseFloat(this.jtfPreco.getText()));
+        produto.setNome_produto(this.jtfNome.getText());
+        produto.setDescricao_produto(this.jtfDescricao.getText());
+        produto.setQuantidade_estoque(Integer.parseInt(this.jtfEstoque.getText()));
+        produto.setPreco(Float.parseFloat(this.jtfPreco.getText()));
+        produto.setFornecedor(this.jtfFornecedor.getText());
         
-        Condicao tela = new Condicao(produto1, flag);
-        tela.setVisible(true);
+        Condicao condicao = new Condicao(produto, flag);
+        condicao.setVisible(true);
     }//GEN-LAST:event_jbConfirmarActionPerformed
     
     /**
@@ -282,8 +268,17 @@ public class PesquisarID extends javax.swing.JFrame {
     private javax.swing.JTextField jtfCampo;
     private javax.swing.JTextField jtfDescricao;
     private javax.swing.JTextField jtfEstoque;
-    private javax.swing.JTextField jtfEstoque1;
+    private javax.swing.JTextField jtfFornecedor;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfPreco;
     // End of variables declaration//GEN-END:variables
+
+    private void preencheDados() {
+        this.jlID.setText("ID: " + Integer.toString(produto.getId_produto()));
+        this.jtfNome.setText(produto.getNome_produto());
+        this.jtfDescricao.setText(produto.getDescricao_produto());
+        this.jtfEstoque.setText(Integer.toString(produto.getQuantidade_estoque()));
+        this.jtfPreco.setText(Float.toString(produto.getPreco()));
+        this.jlData.setText("Data de Cadastro: " + produto.getData_cadastro());
+    }
 }

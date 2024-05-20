@@ -1,19 +1,16 @@
 package view;
 
 import Model.Produto;
-import dao.ProdutoDAO;
+import controller.ProdutoController;
 
 public class Condicao extends javax.swing.JFrame {
 
     private static Produto produto;
-    private static int flag;
+    private static Telas flag;
     
-    private final int ALTERAR_PRODUTO = 1;
-    private final int DELETAR_PRODUTO = 2;
-    
-    public Condicao(Produto produto, int flag) {
-        this.flag = flag;
-        this.produto = produto;
+    public Condicao(Produto produto, Telas flag) {
+        Condicao.flag = flag;
+        Condicao.produto = produto;
         initComponents();
     }
 
@@ -80,11 +77,11 @@ public class Condicao extends javax.swing.JFrame {
     }//GEN-LAST:event_jbNaoActionPerformed
 
     private void jbSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSimActionPerformed
-        ProdutoDAO dao = new ProdutoDAO();
-        if (flag == ALTERAR_PRODUTO) {
-            dao.UpdateProdutoDB(produto);
-        } else if (flag == DELETAR_PRODUTO) {
-            dao.DeleteProdutoDB(produto.getId_produto());
+        ProdutoController controller = new ProdutoController();        
+        if (flag == Telas.ALTERAR_PRODUTO) {
+            controller.atualiza(produto);
+        } else if (flag == Telas.EXCLUIR_PRODUTO) {
+            controller.deletaProdutoPelo(produto.getId_produto());
         }
         this.setVisible(false);
         GerenciaProdutos tela = new GerenciaProdutos();

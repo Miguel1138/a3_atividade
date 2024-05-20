@@ -2,12 +2,6 @@ package view;
 
 import Model.Produto;
 import controller.ProdutoController;
-import dao.ProdutoDAO;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JOptionPane;
-
 
 public class NovoProduto extends javax.swing.JFrame {
     

@@ -53,7 +53,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jtfEstoque1" pref="362" max="32767" attributes="0"/>
+                          <Component id="jtfFornecedor" pref="362" max="32767" attributes="0"/>
                           <Component id="jtfEstoque" max="32767" attributes="0"/>
                           <Component id="jtfPreco" max="32767" attributes="0"/>
                           <Component id="jtfDescricao" max="32767" attributes="0"/>
@@ -95,7 +95,7 @@
                   <Component id="jlID2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jtfDescricao" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="jlID1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -111,7 +111,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtfEstoque1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlID5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="15" max="32767" attributes="0"/>
@@ -192,7 +192,7 @@
         <Property name="text" type="java.lang.String" value="Data de Cadastro:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfEstoque1">
+    <Component class="javax.swing.JTextField" name="jtfFornecedor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fornecedor"/>
       </Properties>

@@ -86,5 +86,20 @@ public class ProdutoController {
         ProdutoDAO dao = new ProdutoDAO();
         return dao.carregaEstoqueBaixo();
     }
+
+    public void atualiza(Produto produto) {
+        ProdutoDAO dao = new ProdutoDAO();
+        dao.UpdateProdutoDB(produto);
+    }
+
+    public void deletaProdutoPelo(int id_produto) {
+        ProdutoDAO dao = new ProdutoDAO();
+        dao.DeleteProdutoDB(id_produto);
+    }
+
+    public Produto carregaProdutoPelo(int id) {
+        ProdutoDAO dao = new ProdutoDAO();
+        return dao.carregaProduto(id);
+    }
     
 }
