@@ -138,6 +138,8 @@ public class Sobre extends javax.swing.JFrame {
 
     private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
         this.setVisible(false);
+        GerenciaProdutos gp = new GerenciaProdutos();
+        gp.setVisible(true);
     }//GEN-LAST:event_jbSairActionPerformed
 
     /**

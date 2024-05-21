@@ -202,7 +202,6 @@ public class PesquisarID extends javax.swing.JFrame {
         int id = Integer.parseInt(this.jtfCampo.getText());
         produto = controller.carregaProdutoPelo(id);
         preencheDados();
-        
     }//GEN-LAST:event_jbLocalizarActionPerformed
 
     private void jbConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConfirmarActionPerformed
@@ -281,4 +280,5 @@ public class PesquisarID extends javax.swing.JFrame {
         this.jtfPreco.setText(Float.toString(produto.getPreco()));
         this.jlData.setText("Data de Cadastro: " + produto.getData_cadastro());
     }
+    
 }
