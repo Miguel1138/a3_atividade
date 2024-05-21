@@ -203,5 +203,42 @@ public class ProdutoDAO {
         return objeto;
     }
     
+       public ArrayList<Integer> getQuantidades() {
+        String sql = "SELECT quantidade_estoque FROM tb_produto";
+        ArrayList<Integer> quantidades = new ArrayList<>();
+        
+        try {
+            Statement stmt = this.getConexao().createStatement();
+             ResultSet res = stmt.executeQuery(sql);
+             while(res.next()) {
+                 int quantidade = res.getInt("quantidade_estoque");
+                 quantidades.add(quantidade);
+             }
+             
+             stmt.close();
+        } catch(SQLException e) {
+            
+        }
+        return quantidades;
+    }
+
+    public ArrayList<Float> getPrecoTotal() {
+        String sql = "SELECT preco FROM tb_produto";
+        ArrayList<Float> precos = new ArrayList<>();
+        
+        try {
+            Statement stmt = this.getConexao().createStatement();
+             ResultSet res = stmt.executeQuery(sql);
+             while(res.next()) {
+                 float preco = res.getFloat("preco");
+                 precos.add(preco);
+             }
+             
+             stmt.close();
+        } catch(SQLException e) {
+            
+        }
+        return precos;
+    }
     
 }

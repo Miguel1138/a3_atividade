@@ -359,6 +359,9 @@ public class GerenciaProdutos extends javax.swing.JFrame {
            });
        }
        
+       String valor = controller.calculaValorTotal();
+       this.labelValorTotal.setText(valor);
+       
   }
    
     private void carregarTela(Telas tela) {

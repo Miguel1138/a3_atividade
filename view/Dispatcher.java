@@ -8,7 +8,7 @@ package view;
  *
  * @author User
  */
-public final class Dispatcher extends Exception{
+public final class Dispatcher extends Exception {
      
     public static String mostrarMensagemDeErro(DispatcherLog msg) {
         

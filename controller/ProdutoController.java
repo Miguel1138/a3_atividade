@@ -102,4 +102,27 @@ public class ProdutoController {
         return dao.carregaProduto(id);
     }
     
+    public String calculaValorTotal() {
+        
+        // TODO: Criar chamada para o banco onde será feita uma lista com todos os valores do preço vezes a quantidade.
+        int somaQtd = 0;
+        float somaTotalProdutos = 0f;
+        ProdutoDAO dao = new ProdutoDAO();
+        
+        ArrayList<Integer> quantidades =  dao.getQuantidades();
+        for(Integer qtd : quantidades) {
+            somaQtd = somaQtd + qtd;
+        }
+        
+        ArrayList<Float> precos = dao.getPrecoTotal();
+        for (float preco: precos) {
+            somaTotalProdutos = somaTotalProdutos + preco;
+        }
+        
+        double valorFinal = somaTotalProdutos * somaQtd;
+        
+        String valor = String.format("%,.2f", valorFinal);
+        return valor;
+    }
+    
 }
