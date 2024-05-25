@@ -10,8 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import view.Dispatcher;
-import view.DispatcherLog;
+import handlers.DispatcherLog;
 import view.Erro;
 
 /**
@@ -20,13 +19,14 @@ import view.Erro;
  */
 public class ProdutoController {
 
+    private final ProdutoDAO dao = new ProdutoDAO();
+    
     public ProdutoController() {
     }
     
     public boolean inserirNovo(Produto produto) {
         boolean dadosEstaoFormatadosCorretamente = validaObjeto(produto);
         if(dadosEstaoFormatadosCorretamente) {
-            ProdutoDAO dao = new ProdutoDAO();
             boolean inseridoNovoProduto = dao.InsertProdutoDB(produto);            
             return inseridoNovoProduto;
         }
@@ -41,28 +41,28 @@ public class ProdutoController {
                 produto.getNome_produto().isEmpty() ||
                 produto.getNome_produto().length() <= 2) 
         {
-            new Erro(Dispatcher.mostrarMensagemDeErro(DispatcherLog.ERRO_NOME_MENOR_2))
+            new Erro(DispatcherLog.ERRO_NOME_MENOR_2)
                     .setVisible(true);
             return false;
         } 
         
         if(produto.getQuantidade_estoque() < 1 ||
                 produto.getQuantidade_estoque() == Integer.MIN_VALUE) {
-            new Erro(Dispatcher.mostrarMensagemDeErro(DispatcherLog.ERRO_ESTOQUE_ZERADO)
-            ).setVisible(true);
+            new Erro(DispatcherLog.ERRO_ESTOQUE_ZERADO)
+                    .setVisible(true);
             return false;
         }
         
         if(produto.getPreco() <= 0f || 
                 produto.getPreco() == Float.MIN_VALUE) {
-            new Erro(Dispatcher.mostrarMensagemDeErro(DispatcherLog.ERRO_PRECO_ZERADO_OU_ABAIXO))
+            new Erro(DispatcherLog.ERRO_PRECO_ZERADO_OU_ABAIXO)
                     .setVisible(true);
             return false;
         }
         
         if(produto.getFornecedor().isBlank() ||
                 produto.getFornecedor().isEmpty()) {
-            new Erro(Dispatcher.mostrarMensagemDeErro(DispatcherLog.ERRO_FORNECEDOR_VAZIO))
+            new Erro(DispatcherLog.ERRO_FORNECEDOR_VAZIO)
                     .setVisible(true);
             return false;
         }
@@ -78,36 +78,28 @@ public class ProdutoController {
     }
 
     public ArrayList<Produto> getProdutoLista() {
-        ProdutoDAO dao = new ProdutoDAO();
         return dao.getMinhaLista();
     }
 
     public ArrayList<Produto> carregaEstoqueBaixo() {
-        ProdutoDAO dao = new ProdutoDAO();
         return dao.carregaEstoqueBaixo();
     }
 
     public void atualiza(Produto produto) {
-        ProdutoDAO dao = new ProdutoDAO();
         dao.UpdateProdutoDB(produto);
     }
 
     public void deletaProdutoPelo(int id_produto) {
-        ProdutoDAO dao = new ProdutoDAO();
         dao.DeleteProdutoDB(id_produto);
     }
 
     public Produto carregaProdutoPelo(int id) {
-        ProdutoDAO dao = new ProdutoDAO();
         return dao.carregaProduto(id);
     }
     
     public String calculaValorTotal() {
-        
-        // TODO: Criar chamada para o banco onde será feita uma lista com todos os valores do preço vezes a quantidade.
         int somaQtd = 0;
         float somaTotalProdutos = 0f;
-        ProdutoDAO dao = new ProdutoDAO();
         
         ArrayList<Integer> quantidades =  dao.getQuantidades();
         for(Integer qtd : quantidades) {

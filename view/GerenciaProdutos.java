@@ -6,18 +6,17 @@ package view;
 
 import Model.Produto;
 import controller.ProdutoController;
-import java.awt.event.ActionEvent;
 
 import javax.swing.table.DefaultTableModel;
 
 public class GerenciaProdutos extends javax.swing.JFrame {
     
-    private final ProdutoController controller = new ProdutoController();
+    private  ProdutoController controller;
     
     public GerenciaProdutos() {
-         initComponents();
-         jBtnVoltar.setVisible(false);
-         carregarDados();
+        this.controller = new ProdutoController();
+        initComponents();
+        carregarDados();
     }
     
     /**
@@ -241,7 +240,7 @@ public class GerenciaProdutos extends javax.swing.JFrame {
             p.getFornecedor(),
            });
        }
-        
+       
         this.setVisible(true);
         jBtnVoltar.setVisible(true);
         buttonEstqBaixo.setVisible(false);
@@ -362,6 +361,8 @@ public class GerenciaProdutos extends javax.swing.JFrame {
        String valor = controller.calculaValorTotal();
        this.labelValorTotal.setText(valor);
        
+       this.jBtnVoltar.setVisible(false);
+
   }
    
     private void carregarTela(Telas tela) {

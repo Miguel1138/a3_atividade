@@ -6,6 +6,7 @@ package view;
 
 import Model.Produto;
 import controller.ProdutoController;
+import handlers.DispatcherLog;
 
 
 /**
@@ -199,9 +200,21 @@ public class PesquisarID extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLocalizarActionPerformed
-        int id = Integer.parseInt(this.jtfCampo.getText());
-        produto = controller.carregaProdutoPelo(id);
-        preencheDados();
+        if(this.jtfCampo.getText().isBlank() || 
+                this.jtfCampo.getText().isEmpty()) {
+            new Erro(DispatcherLog.ERRO_ID_NÃO_INFORMADO)
+                    .setVisible(true);
+        } else {
+            int id = Integer.parseInt(this.jtfCampo.getText().trim());
+            produto = controller.carregaProdutoPelo(id);
+            int ultimoIdLista = controller.getProdutoLista().getLast().getId_produto();
+            if(produto.getId_produto() > ultimoIdLista){
+                new Erro(DispatcherLog.ERRO_ID_FORA_ESCOPO)
+                        .setVisible(true);
+            } else {
+                preencheDados();
+            }
+        }
     }//GEN-LAST:event_jbLocalizarActionPerformed
 
     private void jbConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConfirmarActionPerformed

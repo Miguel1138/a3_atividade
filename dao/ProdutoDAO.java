@@ -13,10 +13,11 @@ public class ProdutoDAO {
 
     public static ArrayList<Produto> produtos_list = new ArrayList<>();
 
+    
     public ProdutoDAO() {
     }
 
-    public Connection getConexao() {
+    public Connection getConexao() throws SQLException {
         Connection connection = null;  //inst�ncia da conex�o
 
         try {
@@ -42,13 +43,11 @@ public class ProdutoDAO {
 
             return connection;
 
-        } catch (ClassNotFoundException e) {  //Driver n�o encontrado
-            System.out.println("O driver nao foi encontrado. " + e.getMessage() );
-            return null;
+        } catch (ClassNotFoundException e) {//Driver n�o encontrado
+            throw new ClassCastException("O driver nao foi encontrado. " + e.getMessage() );
 
         } catch (SQLException e) {
-            System.out.println("Nao foi possivel conectar...");
-            return null;
+            throw new SQLException("Não foi possível conectar ao banco..." + e.getMessage());
         }
     }
 
@@ -77,7 +76,9 @@ public class ProdutoDAO {
 
             stmt.close();
 
-        } catch (SQLException ex) {        }
+        } catch (SQLException ex) {   
+            
+        }
 
         return produtos_list;
     }

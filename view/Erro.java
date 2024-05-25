@@ -1,5 +1,7 @@
 package view;
 
+import handlers.DispatcherLog;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,12 +16,12 @@ public class Erro extends javax.swing.JFrame {
     /**
      * Creates new form Erro
      */
-    private static String motivo = "";
+    private static DispatcherLog motivo;
     
-    public Erro(String motivo) {
+    public Erro(DispatcherLog motivo) {
         initComponents();
-        this.jlErroMotivo.setText(motivo);
         Erro.motivo = motivo;
+        this.jlErroMotivo.setText(motivo.getMsg());
     }
 
     /**
