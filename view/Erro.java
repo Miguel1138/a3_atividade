@@ -1,6 +1,8 @@
 package view;
 
 import handlers.DispatcherLog;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -22,6 +24,11 @@ public class Erro extends javax.swing.JFrame {
         initComponents();
         Erro.motivo = motivo;
         this.jlErroMotivo.setText(motivo.getMsg());
+        
+        this.getContentPane().setBackground(Color.decode("#02153D"));
+        String caminhoIcone = "/view/img/ico.png";
+        ImageIcon icone = new ImageIcon(getClass().getResource(caminhoIcone));
+        this.setIconImage(icone.getImage());
     }
 
     /**
@@ -43,15 +50,32 @@ public class Erro extends javax.swing.JFrame {
         setTitle("Erro");
         setResizable(false);
 
+        jlTitulo.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jlTitulo.setForeground(new java.awt.Color(242, 242, 242));
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTitulo.setText("Não foi possível realizar a operação.");
 
+        jlMotivo.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jlMotivo.setForeground(new java.awt.Color(242, 242, 242));
         jlMotivo.setText("Motivo:");
 
+        jlErroMotivo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        jlErroMotivo.setForeground(new java.awt.Color(242, 242, 242));
         jlErroMotivo.setText("[Insira motivo aqui]");
         jlErroMotivo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        jsSeparador.setBackground(new java.awt.Color(23, 47, 100));
+        jsSeparador.setForeground(new java.awt.Color(23, 47, 100));
+        jsSeparador.setOpaque(true);
+
+        jbOk.setBackground(new java.awt.Color(50, 195, 176));
+        jbOk.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jbOk.setForeground(new java.awt.Color(255, 255, 255));
+        jbOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/icons/check.png"))); // NOI18N
         jbOk.setText("OK");
+        jbOk.setBorderPainted(false);
+        jbOk.setFocusPainted(false);
+        jbOk.setIconTextGap(10);
         jbOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbOkActionPerformed(evt);
@@ -65,6 +89,7 @@ public class Erro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jsSeparador)
                     .addComponent(jlErroMotivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlMotivo)
@@ -72,7 +97,6 @@ public class Erro extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbOk))
-                    .addComponent(jsSeparador)
                     .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -85,9 +109,9 @@ public class Erro extends javax.swing.JFrame {
                 .addComponent(jlMotivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlErroMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jsSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jsSeparador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addComponent(jbOk)
                 .addContainerGap())
         );

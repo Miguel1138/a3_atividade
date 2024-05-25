@@ -2,11 +2,19 @@ package view;
 
 import Model.Produto;
 import controller.ProdutoController;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+
 
 public class NovoProduto extends javax.swing.JFrame {
     
     public NovoProduto() {
         initComponents();
+        
+        this.getContentPane().setBackground(Color.decode("#02153D"));
+        String caminhoIcone = "/view/img/ico.png";
+        ImageIcon icone = new ImageIcon(getClass().getResource(caminhoIcone));
+        this.setIconImage(icone.getImage());
     }
 
     /**
@@ -33,33 +41,88 @@ public class NovoProduto extends javax.swing.JFrame {
         jtfDescricao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Produto");
+        setTitle("Novo Produto");
+        setResizable(false);
 
+        labelNome.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        labelNome.setForeground(new java.awt.Color(241, 241, 241));
         labelNome.setText("Nome");
 
+        labelDescricao.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        labelDescricao.setForeground(new java.awt.Color(241, 241, 241));
         labelDescricao.setText("Descrição");
 
+        labelFornecedor.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        labelFornecedor.setForeground(new java.awt.Color(241, 241, 241));
         labelFornecedor.setText("Fornecedor");
 
+        jtfFornecedor.setBackground(new java.awt.Color(23, 47, 100));
+        jtfFornecedor.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jtfFornecedor.setForeground(new java.awt.Color(242, 242, 242));
+        jtfFornecedor.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        labelEstoque.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        labelEstoque.setForeground(new java.awt.Color(241, 241, 241));
         labelEstoque.setText("Estoque");
 
+        jtfEstoque.setBackground(new java.awt.Color(23, 47, 100));
+        jtfEstoque.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jtfEstoque.setForeground(new java.awt.Color(242, 242, 242));
+        jtfEstoque.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        labelPreco.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        labelPreco.setForeground(new java.awt.Color(241, 241, 241));
         labelPreco.setText("Preço");
 
+        jtfPreco.setBackground(new java.awt.Color(23, 47, 100));
+        jtfPreco.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jtfPreco.setForeground(new java.awt.Color(242, 242, 242));
+        jtfPreco.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        jbCancelar.setBackground(new java.awt.Color(1, 151, 175));
+        jbCancelar.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jbCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        jbCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/icons/xmark.png"))); // NOI18N
         jbCancelar.setText("Cancelar");
+        jbCancelar.setBorderPainted(false);
+        jbCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbCancelar.setFocusPainted(false);
+        jbCancelar.setIconTextGap(10);
         jbCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCancelarActionPerformed(evt);
             }
         });
 
+        jbConfirmar.setBackground(new java.awt.Color(50, 195, 176));
+        jbConfirmar.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jbConfirmar.setForeground(new java.awt.Color(255, 255, 255));
+        jbConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/icons/check.png"))); // NOI18N
         jbConfirmar.setText("Confirmar");
+        jbConfirmar.setBorderPainted(false);
+        jbConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbConfirmar.setFocusPainted(false);
+        jbConfirmar.setIconTextGap(10);
         jbConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbConfirmarActionPerformed(evt);
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(23, 47, 100));
+        jSeparator1.setForeground(new java.awt.Color(23, 47, 100));
+        jSeparator1.setOpaque(true);
+
+        jtfNome.setBackground(new java.awt.Color(23, 47, 100));
+        jtfNome.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jtfNome.setForeground(new java.awt.Color(242, 242, 242));
         jtfNome.setToolTipText("");
+        jtfNome.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        jtfDescricao.setBackground(new java.awt.Color(23, 47, 100));
+        jtfDescricao.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        jtfDescricao.setForeground(new java.awt.Color(242, 242, 242));
+        jtfDescricao.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,9 +179,9 @@ public class NovoProduto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCancelar)
                     .addComponent(jbConfirmar))
