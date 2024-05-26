@@ -47,5 +47,5 @@
  Gabriel Henrique Passos da Silva - Ciência da Computação<br>
  Henrique Antony - Ciência da Computação<br>
  Vitor Emanuel Azevedo Nora e Silva Junior - Ciência da Computação<br>
- Victor Samuel - Sistemas de Informação<br>
+ Vitor Samuel dos Prazeres - Sistemas de Informação<br>
  </b>
